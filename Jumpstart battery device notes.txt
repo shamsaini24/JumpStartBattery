@@ -1,0 +1,23 @@
+USE CASE
+
+Placed on actors chest, near heart, or on bicep. Placed useing 3d printed casing.
+
+Should be replacable, swappable.
+
+Multiple people will be wearing them, 6 at most on screen at one time.
+
+Screen is a touchscreen, can be used as input. Can be used as event trigger for animations?
+
+MVP 1: Can show a flat Green, Yellow, or Red Screen [DONE]
+MVP 2: Solid color screen with Black cross in middle, probably an image [IN PROGRESS]
+MVP 3: Solid color that animates between all 3 colors, and maybe includes flashing red
+Ideally, controlled via an app (needs cloud connectivity, potentially too complex)
+
+
+Potential blocker:
+May need a wire or external battery, can it run while its not connected to anything?
+Wireless connectivity?
+
+
+
+

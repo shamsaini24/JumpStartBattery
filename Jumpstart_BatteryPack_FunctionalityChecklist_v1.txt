@@ -1,0 +1,42 @@
+JUMPSTART BATTERY PACK FUNCTIONALITY CHECKLIST
+-----------------------------------------------
+-----------------------------------------------
+
+Display Functionality
+
+- Can it display a solid color? (green, yellow, red)
+
+- Can it operate independently when hooked up to an external battery? *** (This step should be checked at every step of the way going forward.)
+
+- Can it display an image (solid color + VFX tracker "+")
+
+- Can it display numbers or print text.
+
+- Can it display a simple coded sequence animation (i.e. - solid color flashing, color change transition from green to yellow to red, numbers indicating charge going up or down overtop a color background)
+ 
+- Can it display a video (i.e. - same as above, special tailor made video, nyan cat lol)
+
+----------------
+
+Manipulatable/Device Functionality
+
+
+- Can it store different "states" (state 1 = solid red color, state 2 = solid green color, state 17 = flashing orange nyan cat animation lol)
+
+- Can "touch" or "button" functionality be used to switch between different states (i.e. - color to color, video sequence to video sequence, etc.)
+
+- Can states be manipulated from a distance via Bluetooth or other connection. *** (This step should also be checked at every step of the way going forward.)
+
+- Can multiple states store variable that can be independently manipulated (i.e. State 1 = var color, state 2 = var number, state 3 = var fx, state 4 = override animation with video, etc.)
+
+- Can those variables be manipulated at the same time
+
+- Can we manipulate those variables from a phone, or other controlling device like a laptop (laptop might be better now that I think of it)
+
+- Can we operate multiple Battery Packs simultaneously from one program, like a network all doing the same thing. (Battery Pack B, C, D... all follow exactly Battery Pack A does)
+
+- Can we operate multiple Battery Packs independently from one program. (Battery Pack A is flashing green, Battery Pack B is solid Red, and Battery Pack C is playing Nyan Cat lol)
+
+- Can we create an inbetween, where some Battery Packs are being controlled independently, and others are being controlled simultaneously (like a toggle) and can we do that for specific states, assuming states can be controlled independently.
+
+The dream would be to have a number slider, color selector, animation player for each Battery Pack which can be controlled by a laptop.
