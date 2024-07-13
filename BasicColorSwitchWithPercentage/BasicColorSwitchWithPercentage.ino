@@ -22,6 +22,8 @@ void setup() {
   // Set text font and size
   tft.setFreeFont(&FreeSansBold24pt7b);
   tft.setTextSize(3);
+  TFT_SET_BL(50);
+
   changeColor();
 }
 
@@ -47,7 +49,6 @@ void loop() {
     //Serial.print("X = "); Serial.print(x);
     //Serial.print("\tY = "); Serial.println(y);
     changeColor();
-    TFT_SET_BL(percentage);
     delay(200); // Add delay to avoid rapid color changes
 
   } else if (!touch.available() && isTouched) {
