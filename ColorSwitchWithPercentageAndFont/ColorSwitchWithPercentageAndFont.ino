@@ -9,6 +9,32 @@ int percentage = 35;
 int brightness = 50; // Initial brightness level
 bool flash = false;
 
+int imageIndex = 0;
+bool isImageMode = false;
+
+// Define the images (background colors and text color)
+struct Image {
+  uint16_t bgColor;
+  uint16_t textColor;
+  String text;
+};
+
+Image images[] = {
+  { TFT_GREEN, TFT_BLACK, "X" },
+  { 0xFA00, TFT_BLACK, "X" },
+  { TFT_RED, TFT_BLACK, "X" },
+  { TFT_RED, TFT_WHITE, "X" },
+  { TFT_WHITE, TFT_BLACK, "X" },
+  { TFT_BLACK, TFT_WHITE, "X" },
+  { TFT_GREEN, TFT_GREEN, "" },
+  { 0xFA00, 0xFA00, "" },
+  { TFT_RED, TFT_RED, "" },
+  { TFT_RED, TFT_RED, "" },
+  { TFT_WHITE, TFT_WHITE, "" },
+  { TFT_BLACK, TFT_BLACK, "" },
+  { 0x07E0, 0x07E0, "" } // Light Blue
+};
+
 void setup()
 {
   Serial.begin(115200);
@@ -53,15 +79,23 @@ void loop()
     if (x < 100 && (y >= 50 && y <= 190)) // Ensure touch in the left center region doesn't affect brightness
     {
       Serial.println("Touch detected left \r\n");
-      if (percentage > 0)
+      if (isImageMode) {
+        isImageMode = false;
+        percentage = 100;
+      } else if (percentage > 0) {
         percentage--;
+      }
     }
 
     if (x > 140 && (y >= 50 && y <= 190)) // Ensure touch in the right center region doesn't affect brightness
     {
       Serial.println("Touch detected right \r\n");
-      if (percentage < 101)
+      if (percentage < 100) {
         percentage++;
+      } else {
+        isImageMode = true;
+        imageIndex = (imageIndex + 1) % (sizeof(images) / sizeof(images[0]));
+      }
     }
 
     changeColor();
@@ -80,38 +114,32 @@ void loop()
 
 void changeColor()
 {
-  if (percentage > 60)
-  {
-    tft.fillScreen(TFT_GREEN);
-    tft.setTextColor(TFT_BLACK, TFT_GREEN);
+  if (isImageMode) {
+    tft.fillScreen(images[imageIndex].bgColor);
+    tft.setTextColor(images[imageIndex].textColor, images[imageIndex].bgColor);
+    drawText(images[imageIndex].text);
+  } else {
+    if (percentage > 60) {
+      tft.fillScreen(TFT_GREEN);
+      tft.setTextColor(TFT_BLACK, TFT_GREEN);
+    } else if (percentage > 30 && percentage <= 60) {
+      tft.fillScreen(0xFA00);
+      tft.setTextColor(TFT_BLACK, 0xFA00);
+    } else if (percentage > 10 && percentage <= 30) {
+      tft.fillScreen(TFT_RED);
+      tft.setTextColor(TFT_BLACK, TFT_RED);
+    }
+    drawText(String(percentage));
   }
-  else if (percentage > 30 && percentage <= 60)
-  {
-    tft.fillScreen(0xFA00);
-    tft.setTextColor(TFT_BLACK, 0xFA00);
-  }
-  else if (percentage > 10 && percentage <= 30)
-  {
-    tft.fillScreen(TFT_RED);
-    tft.setTextColor(TFT_BLACK, TFT_RED);
-  }
-
-  drawText();
 }
 
-void drawText()
+void drawText(String text)
 {
-  // Define the text to be displayed
-  String text = (percentage > 100) ? "X" : String(percentage);
-
   // Set the text datum to the center
   tft.setTextDatum(MC_DATUM);
   tft.setTextPadding(tft.width());
-  
-  // Draw the text in the center of the screen
 
   tft.drawString(text, tft.width() / 2, tft.height() / 2);
-
 }
 
 void flashRed()
@@ -130,7 +158,7 @@ void flashRed()
     tft.setTextColor(TFT_BLACK, TFT_BLACK);
     flash = true;
   }
-  drawText();
+  drawText(String(percentage));
   delay(500);
 }
 
