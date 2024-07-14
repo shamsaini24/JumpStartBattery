@@ -1,5 +1,6 @@
 #include <TFT_eSPI.h> // Include the graphics library
 #include "CST816S.h"  // Include the CST816S touch library
+#include "AlarmClock24pt7b.h"
 
 TFT_eSPI tft = TFT_eSPI();  // Create an instance of the display
 CST816S touch(6, 7, 13, 5); // sda, scl, rst, irq
@@ -44,7 +45,7 @@ void setup()
   tft.setRotation(0); // Set display orientation, adjust if necessary
 
   // Set text font and size
-  tft.setFreeFont(&FreeSansBold24pt7b);
+  tft.setFreeFont(&alarmclock24pt7b);
   tft.setTextSize(3);
   TFT_SET_BL(brightness); // Set the initial brightness
 
@@ -123,8 +124,8 @@ void changeColor()
       tft.fillScreen(TFT_GREEN);
       tft.setTextColor(TFT_BLACK, TFT_GREEN);
     } else if (percentage > 30 && percentage <= 60) {
-      tft.fillScreen(0xFA00);
-      tft.setTextColor(TFT_BLACK, 0xFA00);
+      tft.fillScreen(TFT_GREENYELLOW);
+      tft.setTextColor(TFT_BLACK, TFT_GREENYELLOW);
     } else if (percentage > 10 && percentage <= 30) {
       tft.fillScreen(TFT_RED);
       tft.setTextColor(TFT_BLACK, TFT_RED);
