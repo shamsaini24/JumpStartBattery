@@ -1,6 +1,6 @@
 #include <TFT_eSPI.h> // Include the graphics library
 #include "CST816S.h"  // Include the CST816S touch library
-#include "AlarmClock24pt7b.h"
+#include "AlarmClock72pt7b.h"
 
 TFT_eSPI tft = TFT_eSPI();  // Create an instance of the display
 CST816S touch(6, 7, 13, 5); // sda, scl, rst, irq
@@ -21,6 +21,7 @@ struct Image {
 };
 
 Image images[] = {
+  { TFT_GREEN, TFT_BLACK, "00" },
   { TFT_GREEN, TFT_BLACK, "X" },
   { 0xFA00, TFT_BLACK, "X" },
   { TFT_RED, TFT_BLACK, "X" },
@@ -45,8 +46,8 @@ void setup()
   tft.setRotation(0); // Set display orientation, adjust if necessary
 
   // Set text font and size
-  tft.setFreeFont(&alarmclock24pt7b);
-  tft.setTextSize(3);
+  tft.setFreeFont(&alarmclock72pt7b);
+  tft.setTextSize(1);
   TFT_SET_BL(brightness); // Set the initial brightness
 
   changeColor();
@@ -82,7 +83,7 @@ void loop()
       Serial.println("Touch detected left \r\n");
       if (isImageMode) {
         isImageMode = false;
-        percentage = 100;
+        percentage = 99;
       } else if (percentage > 0) {
         percentage--;
       }
@@ -91,7 +92,7 @@ void loop()
     if (x > 140 && (y >= 50 && y <= 190)) // Ensure touch in the right center region doesn't affect brightness
     {
       Serial.println("Touch detected right \r\n");
-      if (percentage < 100) {
+      if (percentage < 99) {
         percentage++;
       } else {
         isImageMode = true;
