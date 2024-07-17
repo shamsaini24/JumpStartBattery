@@ -66,8 +66,8 @@ void changeColor() {
     tft.fillScreen(TFT_GREEN);
     tft.setTextColor(TFT_BLACK, TFT_GREEN);
   } else if (percentage > 30 && percentage <= 60){
-    tft.fillScreen(0xFA00);
-    tft.setTextColor(TFT_BLACK, 0xFA00);
+    tft.fillScreen(TFT_ORANGE);
+    tft.setTextColor(TFT_BLACK, TFT_ORANGE);
   } else if(percentage > 10 && percentage <= 30){
     tft.fillScreen(TFT_RED);
     tft.setTextColor(TFT_BLACK, TFT_RED);

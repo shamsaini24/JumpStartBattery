@@ -49,8 +49,8 @@ void changeColor() {
       tft.setTextColor(TFT_WHITE, TFT_GREEN);
       break;
     case 1:
-      tft.fillScreen(TFT_YELLOW);
-      tft.setTextColor(TFT_BLACK, TFT_YELLOW);
+      tft.fillScreen(TFT_ORANGE);
+      tft.setTextColor(TFT_BLACK, TFT_ORANGE);
       break;
     case 2:
       tft.fillScreen(TFT_RED);

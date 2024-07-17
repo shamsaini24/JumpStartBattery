@@ -10,7 +10,7 @@ const int STARTING_PERCENTAGE = 0;             // Starting percentage
 const int TARGET_PERCENTAGE = 100;              // Target percentage for animation
 const int BRIGHTNESS_INITIAL = 50;             // Initial brightness level
 const unsigned long ANIMATION_DELAY_MS = 3000; // Delay before starting the animation in milliseconds
-const unsigned long STEP_DELAY_MS = 150;       // Delay for each step in the animation in milliseconds
+const unsigned long STEP_DELAY_MS = 50;       // Delay for each step in the animation in milliseconds
 
 bool isTouched = false;               // To keep track of touch status
 int percentage = STARTING_PERCENTAGE; // Current percentage
@@ -121,8 +121,8 @@ void changeColor()
   }
   else if (percentage > 30 && percentage <= 60)
   {
-    tft.fillScreen(TFT_GREENYELLOW);
-    tft.setTextColor(TFT_BLACK, TFT_GREENYELLOW);
+    tft.fillScreen(TFT_ORANGE);
+    tft.setTextColor(TFT_BLACK, TFT_ORANGE);
   }
   else if (percentage > 10 && percentage <= 30)
   {
