@@ -1,16 +1,16 @@
 #include <TFT_eSPI.h>         // Include the graphics library
 #include "CST816S.h"          // Include the CST816S touch library
-#include "AlarmClock72pt7b.h" // Include the custom font
+#include "CyborgPunk50pt7b.h" // Include the custom font
 
 TFT_eSPI tft = TFT_eSPI();  // Create an instance of the display
 CST816S touch(6, 7, 13, 5); // sda, scl, rst, irq
 
 // User-friendly constants for easy adjustments
-const int STARTING_PERCENTAGE = 0;             // Starting percentage
-const int TARGET_PERCENTAGE = 100;              // Target percentage for animation
+const int STARTING_PERCENTAGE = 69;             // Starting percentage
+const int TARGET_PERCENTAGE = 1;              // Target percentage for animation
 const int BRIGHTNESS_INITIAL = 50;             // Initial brightness level
 const unsigned long ANIMATION_DELAY_MS = 3000; // Delay before starting the animation in milliseconds
-const unsigned long STEP_DELAY_MS = 50;       // Delay for each step in the animation in milliseconds
+const unsigned long STEP_DELAY_MS = 25;       // Delay for each step in the animation in milliseconds
 
 bool isTouched = false;               // To keep track of touch status
 int percentage = STARTING_PERCENTAGE; // Current percentage
@@ -27,7 +27,7 @@ void setup()
   tft.setRotation(0); // Set display orientation, adjust if necessary
 
   // Set text font and size
-  tft.setFreeFont(&alarmclock72pt7b);
+  tft.setFreeFont(&cyborgpunk50pt7b);
   tft.setTextSize(1);
   TFT_SET_BL(brightness); // Set the initial brightness
 
@@ -138,7 +138,7 @@ void drawText(String text)
   tft.setTextDatum(MC_DATUM);
   tft.setTextPadding(tft.width());
 
-  tft.drawString(text, tft.width() / 2, tft.height() / 2);
+  tft.drawString(text, tft.width() / 2, tft.height() / 2 -10);
 }
 
 void flashRed()
