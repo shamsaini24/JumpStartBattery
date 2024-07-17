@@ -29,12 +29,17 @@ Image images[] = {
   { TFT_WHITE, TFT_BLACK, "X" },
   { TFT_BLACK, TFT_WHITE, "X" },
   { TFT_GREEN, TFT_GREEN, "" },
-  { 0xFA00, 0xFA00, "" },
+  { 0xFA00, 0xFA00, "" }, //ORANGE
   { TFT_RED, TFT_RED, "" },
-  { TFT_RED, TFT_RED, "" },
+  { TFT_ORANGE, TFT_ORANGE, "" },
+  { TFT_GREEN, TFT_GREEN, "" },
+  { TFT_BLUE, TFT_BLUE, "" },
   { TFT_WHITE, TFT_WHITE, "" },
   { TFT_BLACK, TFT_BLACK, "" },
-  { 0x07E0, 0x07E0, "" } // Light Blue
+  { TFT_RED, TFT_RED, "" },
+  { TFT_GOLD, TFT_GOLD, "" },
+  { TFT_GREEN, TFT_GREEN, "" },
+  { TFT_BLUE, TFT_BLUE, "" },
 };
 
 void setup()
