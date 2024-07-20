@@ -1,5 +1,6 @@
 #include <TFT_eSPI.h>      // Include the graphics library
 #include "CST816S.h"       // Include the CST816S touch library
+#include "CyborgPunk50pt7b.h" // Include the custom font
 
 TFT_eSPI tft = TFT_eSPI();  // Create an instance of the display
 CST816S touch(6, 7, 13, 5); // sda, scl, rst, irq
@@ -20,8 +21,8 @@ void setup() {
   //tft.setTextColor(TFT_WHITE, TFT_GREEN);
 
   // Set text font and size
-  tft.setFreeFont(&FreeSansBold24pt7b);
-  tft.setTextSize(3);
+  tft.setFreeFont(&cyborgpunk50pt7b);
+  tft.setTextSize(1);
   TFT_SET_BL(50);
 
   changeColor();
