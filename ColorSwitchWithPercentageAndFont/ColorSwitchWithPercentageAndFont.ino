@@ -1,6 +1,6 @@
 #include <TFT_eSPI.h> // Include the graphics library
 #include "CST816S.h"  // Include the CST816S touch library
-#include "AlarmClock72pt7b.h"
+#include "CyborgPunk50pt7b.h"
 
 TFT_eSPI tft = TFT_eSPI();  // Create an instance of the display
 CST816S touch(6, 7, 13, 5); // sda, scl, rst, irq
@@ -51,7 +51,7 @@ void setup()
   tft.setRotation(0); // Set display orientation, adjust if necessary
 
   // Set text font and size
-  tft.setFreeFont(&alarmclock72pt7b);
+  tft.setFreeFont(&cyborgpunk50pt7b);
   tft.setTextSize(1);
   TFT_SET_BL(brightness); // Set the initial brightness
 
@@ -126,13 +126,13 @@ void changeColor()
     tft.setTextColor(images[imageIndex].textColor, images[imageIndex].bgColor);
     drawText(images[imageIndex].text);
   } else {
-    if (percentage > 60) {
+    if (percentage > 50) {
       tft.fillScreen(TFT_GREEN);
       tft.setTextColor(TFT_BLACK, TFT_GREEN);
-    } else if (percentage > 30 && percentage <= 60) {
-      tft.fillScreen(TFT_GREENYELLOW);
-      tft.setTextColor(TFT_BLACK, TFT_GREENYELLOW);
-    } else if (percentage > 10 && percentage <= 30) {
+    } else if (percentage > 25 && percentage <= 50) {
+      tft.fillScreen(TFT_ORANGE);
+      tft.setTextColor(TFT_BLACK, TFT_ORANGE);
+    } else if (percentage > 10 && percentage <= 25) {
       tft.fillScreen(TFT_RED);
       tft.setTextColor(TFT_BLACK, TFT_RED);
     }
@@ -146,7 +146,7 @@ void drawText(String text)
   tft.setTextDatum(MC_DATUM);
   tft.setTextPadding(tft.width());
 
-  tft.drawString(text, tft.width() / 2, tft.height() / 2);
+  tft.drawString(text, tft.width() / 2, tft.height() / 2 - 15);
 }
 
 void flashRed()

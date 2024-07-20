@@ -6,11 +6,11 @@ TFT_eSPI tft = TFT_eSPI();  // Create an instance of the display
 CST816S touch(6, 7, 13, 5); // sda, scl, rst, irq
 
 // User-friendly constants for easy adjustments
-const int STARTING_PERCENTAGE = 89;             // Starting percentage
-const int TARGET_PERCENTAGE = 3;                // Target percentage for animation
+const int STARTING_PERCENTAGE = 1;             // Starting percentage
+const int TARGET_PERCENTAGE = 23;                // Target percentage for animation
 const int BRIGHTNESS_INITIAL = 50;              // Initial brightness level
-const unsigned long ANIMATION_DELAY_MS = 2000;  // Delay before starting the animation in milliseconds
-const unsigned long STEP_DELAY_MS = 10;         // Delay for each step in the animation in milliseconds
+const unsigned long ANIMATION_DELAY_MS = 3000;  // Delay before starting the animation in milliseconds
+const unsigned long STEP_DELAY_MS = 1000;         // Delay for each step in the animation in milliseconds
 const unsigned long COUNTDOWN_STEP_MS = 1000;   // Duration for each countdown step in milliseconds
 
 bool isTouched = false;               // To keep track of touch status
@@ -77,6 +77,10 @@ void loop()
         showCountdown(); // Show countdown before animation
         percentage = STARTING_PERCENTAGE; // Reset to starting percentage
         changeColor();
+        if(percentage <11)
+        {
+          flashRed();
+        }
         delay(3000);     // x-second delay before starting the animation
         animateBatteryChange();
       }
@@ -109,7 +113,7 @@ void showCountdown()
 
 void animateBatteryChange()
 {
-  int step = (TARGET_PERCENTAGE > percentage) ? 1 : -2;
+  int step = (TARGET_PERCENTAGE > percentage) ? 1 : -1;
 
   while (percentage != TARGET_PERCENTAGE)
   {
